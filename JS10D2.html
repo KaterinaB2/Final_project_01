@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Checker</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            font-size: 16px;
+            margin: 10px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        button {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f54d2c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <label for="purchaseInput">Вкажіть суму покупки:</label>
+        <input type="number" id="purchaseInput" placeholder="Введіть суму">
+    </div>
+
+    <button onclick="checkAndApplyDiscount()">Перевірити суму</button>
+
+    <script>
+        function checkSum(sum) {
+            if (sum >= 1000) {
+                return true;
+            } else {
+                const additionalSum = 1000 - sum;
+                const userConfirmation = confirm('Для знижки вам необхідно вибрати ще товарів на суму більше 1000 грн. Продовжимо?');
+                if (userConfirmation) {
+                    const addedSum = +prompt("Вкажіть додаткову суму покупки: ");
+                    return checkSum(sum + addedSum);
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        function checkAndApplyDiscount() {
+            let sum = +document.getElementById('purchaseInput').value;
+
+            if (isNaN(sum)) {
+                alert('Будь ласка, введіть коректну суму покупки.');
+            } else {
+                if (checkSum(sum)) {
+                    displayResult('Знижка 20% забезпечена!');
+                } else {
+                    displayResult('Нічого, у нас все одно низькі ціни!');
+                }
+            }
+        }
+
+        function displayResult(message) {
+            const resultContainer = document.createElement('div');
+            resultContainer.style.textAlign = 'center';
+            resultContainer.innerHTML = `<p>${message}</p>`;
+            document.body.appendChild(resultContainer);
+        }
+    </script>
+</body>
+</html>

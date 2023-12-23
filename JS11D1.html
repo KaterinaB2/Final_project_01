@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра вгадай число</title>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            font-size: 20px;
+            margin: 10px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        button {
+            font-size: 20px;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f49883;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #resultContainer {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <label for="minInput">Мінімальне значення:</label>
+        <input type="number" id="minInput" placeholder="Введіть мінімальне значення">
+
+        <label for="maxInput">Максимальне значення:</label>
+        <input type="number" id="maxInput" placeholder="Введіть максимальне значення">
+
+        <label for="userGuess">Введіть ваше число:</label>
+        <input type="number" id="userGuess" placeholder="Введіть ваше число">
+
+        <button onclick="startGuessingGame()">Почати гру</button>
+    </div>
+
+    <div id="resultContainer"></div>
+
+    <script>
+        function startGuessingGame() {
+            let min = +document.getElementById("minInput").value;
+            let max = +document.getElementById("maxInput").value;
+
+            let targetNumber = Math.round(min + Math.random() * (max - min));
+
+            let numInput = document.getElementById("userGuess");
+            let resultContainer = document.getElementById('resultContainer');
+            let attempts = 0;
+
+            numInput.addEventListener('input', function() {
+                let num = +numInput.value;
+
+                if (isNaN(num)) {
+                    resultContainer.innerHTML = "<p>Будь ласка, введіть число.</p>";
+                } else {
+                    attempts++;
+
+                    if (num > targetNumber) {
+                        resultContainer.innerHTML = "<p>Це число більше загаданого</p>";
+                    } else if (num < targetNumber) {
+                        resultContainer.innerHTML = "<p>Це число менше загаданого</p>";
+                    } else {
+                        resultContainer.innerHTML = "<p>Правильно. Кількість спроб: " + attempts + "</p>";
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

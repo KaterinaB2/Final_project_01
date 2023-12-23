@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трикутник</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2; /* Фоновий колір */
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            width: 300px;
+            margin-bottom: 20px;
+            background-color: #fff; /* Колір тла форми */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тінь */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ec772e;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7fbbd3;
+        }
+
+        #result {
+            width: 300px;
+            text-align: center;
+            color: #333;
+            background-color: #fff; /* Колір тла результатів */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тінь */
+        }
+    </style>
+</head>
+<body>
+    <h2>Введіть сторони трикутника</h2>
+    <h3>щоб знайти периметр та площю трикутника: </h3>
+    <form id="triangleForm">
+        <label for="sideA">Сторона A:</label>
+        <input type="text" id="sideA" name="sideA" required>
+
+        <label for="sideB">Сторона B:</label>
+        <input type="text" id="sideB" name="sideB" required>
+
+        <label for="sideC">Сторона C:</label>
+        <input type="text" id="sideC" name="sideC" required>
+
+        <button type="button" onclick="calculateTriangle()">Розрахувати</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateTriangle() {
+            var a = parseFloat(document.getElementById("sideA").value);
+            var b = parseFloat(document.getElementById("sideB").value);
+            var c = parseFloat(document.getElementById("sideC").value);
+
+            var p = a + b + c;
+            var s = p / 2; //Напівпериметр
+            var area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+
+            document.getElementById("result").innerHTML = "<p>Периметр трикутника: " + p + "</p>" +
+                                                            "<p>Площа трикутника: " + area + "</p>";
+        }
+    </script>
+</body>
+</html>

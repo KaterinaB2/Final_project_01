@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратне рівняння</title>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #inputA, #inputB, #inputC {
+            font-size: 20px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #solveButton {
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fa9818;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <label for="inputA">Введіть A у квадратному рівнянні (Ax² + Bx + C = 0):</label>
+    <input type="number" id="inputA" placeholder="A">
+
+    <label for="inputB">Введіть B у квадратному рівнянні (Ax² + Bx + C = 0):</label>
+    <input type="number" id="inputB" placeholder="B">
+
+    <label for="inputC">Введіть C у квадратному рівнянні (Ax² + Bx + C = 0):</label>
+    <input type="number" id="inputC" placeholder="C">
+
+    <button id="solveButton" onclick="solveQuadratic()">Розв'язати</button>
+
+    <div id="result"></div>
+
+    <script>
+        function solveQuadratic() {
+            let a = parseFloat(document.getElementById('inputA').value);
+            let b = parseFloat(document.getElementById('inputB').value);
+            let c = parseFloat(document.getElementById('inputC').value);
+
+            document.getElementById('result').innerHTML = "Ви отримали рівняння: " + a + "x² + " + b + "x + " + c + " = 0<br>";
+
+            let D = b * b - 4 * a * c;
+
+            if (D < 0) {
+                document.getElementById('result').innerHTML += 'Коренів не має';
+            } else if (D > 0) {
+                let x1 = (-b + Math.sqrt(D)) / (2 * a);
+                let x2 = (-b - Math.sqrt(D)) / (2 * a);
+                document.getElementById('result').innerHTML += 'Є два кореня: x₁ = ' + x1 + "; x₂ = " + x2;
+            } else {
+                let x = -b / (2 * a);
+                document.getElementById('result').innerHTML += 'Має один корінь: x = ' + x;
+            }
+        }
+    </script>
+</body>
+</html>

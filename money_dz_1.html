@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Money</title>
+    <style>
+        body {
+            background-color: rgb(245, 242, 238);
+            color: black;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #inputMoney {
+            font-size: 20px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #withdrawButton {
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f06109;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <label for="inputMoney">Яку суму хочете зняти?</label>
+    <input type="number" id="inputMoney" placeholder="Введіть суму">
+    <button id="withdrawButton" onclick="withdrawMoney()">Зняти гроші</button>
+
+    <div id="result"></div>
+
+    <script>
+        function withdrawMoney() {
+            let money = parseFloat(document.getElementById('inputMoney').value);
+            let resultContainer = document.getElementById('result');
+
+            if (money >= 50 && money <= 3000) {
+                let n = money % 50;
+                let p = money - n;
+                resultContainer.innerHTML = 'Ви можете зняти: ' + p + ', комісія = ' + n;
+            } else {
+                resultContainer.innerHTML = 'На жаль, Ви можете зняти гроші на суму від 50 грн. до 3000 грн.';
+            }
+        }
+    </script>
+</body>
+</html>

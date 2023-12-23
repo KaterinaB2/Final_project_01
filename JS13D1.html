@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliments and Animals</title>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #inputContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #inputNumber {
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        #generateButton {
+            font-size: 20px;
+            padding: 5px;
+            cursor: pointer;
+            background-color: #c66832;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #output {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Генератор Компліментів</h2>
+    </div>
+
+    <div id="inputContainer">
+        <label for="inputNumber">Введіть кількість комбінацій:  </label> <br>
+        <input type="number" id="inputNumber" placeholder="Введіть кількість">
+        <button id="generateButton" onclick="generateCombinations()">Генерувати</button><br>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        function generateCombinations() {
+            let compliments = ["cute", "clever", "smart", "kind", "polite", "generous", "educated", "friendly", "honest", "brave"];
+            let animals = ["fox", "frog", "wolf", "dog", "cat", "kangaroo", "rabbit", "elephant", "crocodile", "lion", "monkey", "tiger", "lynx", "bear", "cheetah"];
+
+            let inputNumber = document.getElementById('inputNumber').value;
+            let outputContainer = document.getElementById('output');
+            outputContainer.innerHTML = '';
+
+            for (let i = 1; i <= inputNumber; i++) {
+                let randCompliments = Math.floor(Math.random() * compliments.length);
+                let randAnimals = Math.floor(Math.random() * animals.length);
+                outputContainer.innerHTML += i + ". " + compliments[randCompliments] + " " + animals[randAnimals] + "<br>";
+            }
+        }
+    </script>
+</body>
+</html>
+
